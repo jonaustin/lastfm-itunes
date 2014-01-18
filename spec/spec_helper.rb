@@ -6,3 +6,8 @@ $:.unshift(File.expand_path('../lib', __FILE__))
 
 require 'rspec'
 require 'lastfm-itunes'
+
+def itunes_xml_path
+  Pathname.new(__FILE__).join('../', 'fixtures', 'iTunes Music Library.xml')
+end
+
