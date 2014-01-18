@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'pathname'
 
 describe LastfmItunes::Generator do
-  let(:m3u_path) { Pathname.new(__FILE__).join('..', '..', 'tmp', 'lastfm-itunes.m3u') }
+  let(:m3u_path) { Pathname.new(__FILE__).join('..', '..', '..', 'tmp', 'lastfm-itunes.m3u') }
 
   before { File.delete(m3u_path) if File.exists?(m3u_path) }
 
