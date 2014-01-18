@@ -1,3 +1,6 @@
+require 'm3uzi'
+require 'pathname'
+require 'lastfm-itunes/generator'
 require 'lastfm-itunes/itunes'
 require 'lastfm-itunes/lastfm'
 require 'lastfm-itunes/version'

@@ -22,7 +22,7 @@ RSpec.configure do |config|
 end
 
 def itunes_xml_path
-  Pathname.new(__FILE__).join('../', 'fixtures', 'iTunes Music Library.xml')
+  Pathname.new(__FILE__).join('..', 'fixtures', 'iTunes Music Library.xml')
 end
 
 def lastfm_credentials

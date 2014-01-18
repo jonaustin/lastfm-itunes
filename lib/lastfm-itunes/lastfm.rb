@@ -8,10 +8,18 @@ module LastfmItunes
     end
 
     def my_top_tracks(artist, tracks)
-      tracks & artist_top_tracks(artist)
+      return [] if artist.nil? || tracks.empty?
+      tracks_by_name = index_by_name(tracks)
+      artist_top_tracks(artist).each_with_object([]) do |lft, array|
+        array << tracks_by_name[lft.downcase] if tracks_by_name[lft.downcase]
+      end
     end
 
     private
+
+    def index_by_name(tracks)
+      tracks.each_with_object({}) { |t, hash| hash[t.name.downcase] = t }
+    end
 
     def artist_top_tracks(artist)
       artist = Rockstar::Artist.new(artist)

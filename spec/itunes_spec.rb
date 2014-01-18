@@ -14,7 +14,12 @@ describe LastfmItunes::Itunes do
   end
 
   it 'should group tracks by artist' do
-    itunes.artist_tracks['Radiohead'].should eq(['Nude', 'Reckoner'])
+    itunes.artist_tracks['Radiohead'].map(&:name).should eq(['Nude', 'Reckoner'])
+  end
+
+  it 'should store itunes hash' do
+    itunes_track = itunes.library.music.tracks.select{ |t| t.artist == 'Radiohead' && t.name == 'Nude' }.first
+    itunes.artist_tracks['Radiohead'].first.should == itunes_track
   end
 end
 

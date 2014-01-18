@@ -16,7 +16,7 @@ module LastfmItunes
     def group_tracks_by_artist
       @library.music.tracks.each_with_object({}) do |track, hash|
         hash[track.artist] ||= []
-        hash[track.artist] << track.name 
+        hash[track.artist] << track
       end
     end
   end
