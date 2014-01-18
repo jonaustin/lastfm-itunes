@@ -13,8 +13,12 @@ VCR.configure do |c|
   c.hook_into                :webmock
   c.ignore_localhost         = true
   c.default_cassette_options = { :record => :new_episodes }
-  c.filter_sensitive_data('<API_KEY>') { ENV['LASTFM_API_KEY'] }
-  c.filter_sensitive_data('<API_SECRET>') { ENV['LASTFM_API_SECRET'] }
+  c.filter_sensitive_data('API_KEY') { ENV['LASTFM_API_KEY'] }
+  c.filter_sensitive_data('API_SECRET') { ENV['LASTFM_API_SECRET'] }
+  c.default_cassette_options = {
+    :match_requests_on => [:method,
+      VCR.request_matchers.uri_without_param(:api_key)]
+  }
 end
 
 RSpec.configure do |config|
