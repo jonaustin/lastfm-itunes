@@ -4,13 +4,22 @@ require 'pathname'
 describe LastfmItunes::Generator do
   let(:m3u_path) { Pathname.new(__FILE__).join('..', '..', '..', 'tmp', 'lastfm-itunes.m3u') }
 
-  before { File.delete(m3u_path) if File.exists?(m3u_path) }
+  #before { File.delete(m3u_path) if File.exists?(m3u_path) }
 
   it "should generate m3u of top tracks" do
     VCR.use_cassette('lastfm top tracks for all itunes artists') do
       generator = LastfmItunes::Generator.new(itunes_xml_path, lastfm_credentials, m3u_path: m3u_path)
       generator.generate_m3u
       generator.m3u.playlist_items.count.should == 82
+      File.exists?(m3u_path).should be_true
+    end
+  end
+
+  it 'should respect limit for number of each artist tracks to return' do
+    VCR.use_cassette('lastfm top tracks for all itunes artists with limit') do
+      generator = LastfmItunes::Generator.new(itunes_xml_path, lastfm_credentials, m3u_path: m3u_path, limit: 1)
+      generator.generate_m3u
+      generator.m3u.playlist_items.count.should == 13
       File.exists?(m3u_path).should be_true
     end
   end

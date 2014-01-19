@@ -7,11 +7,13 @@ module LastfmItunes
       Rockstar.lastfm = lastfm_credentials_hash
     end
 
-    def my_top_tracks(artist, tracks)
+    def my_top_tracks(artist, tracks, limit=nil)
       return [] if artist.nil? || tracks.empty?
       tracks_by_name = index_by_name(tracks)
+      limit ||= tracks_by_name.size
       artist_top_tracks(artist).each_with_object([]) do |lft, array|
         array << tracks_by_name[lft.downcase] if tracks_by_name[lft.downcase]
+       return array if array.size >= limit
       end
     end
 

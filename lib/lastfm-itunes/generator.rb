@@ -1,9 +1,3 @@
-require 'm3uzi'
-require 'pathname'
-require 'lastfm-itunes/itunes'
-require 'lastfm-itunes/lastfm'
-require 'lastfm-itunes/version'
-
 module LastfmItunes
   class Generator
     attr_reader :m3u, :m3u_path
@@ -12,6 +6,7 @@ module LastfmItunes
       @itunes_xml_path = itunes_xml_path
       @lastfm = Lastfm.new(lastfm_credentials)
       @m3u_path = options.fetch(:m3u_path) { default_m3u_path }
+      @limit = options.fetch(:limit) { nil }
       @m3u = ::M3Uzi.new
     end
 
@@ -37,12 +32,12 @@ module LastfmItunes
     end
 
     def itunes_artist_tracks
-      Itunes.new(@itunes_xml_path).artist_tracks
+      @library ||= Itunes.new(@itunes_xml_path).artist_tracks
     end
 
     def lf_itunes_top_artist_tracks(artist, tracks)
       return [] if artist.nil? || tracks.empty?
-      @lastfm.my_top_tracks(artist, tracks)
+      @lastfm.my_top_tracks(artist, tracks, @limit)
     end
 
     def default_m3u_path
