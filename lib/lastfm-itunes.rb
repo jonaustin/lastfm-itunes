@@ -1,4 +1,5 @@
 require 'm3uzi'
+require 'rainbow'
 require 'pathname'
 require 'lastfm-itunes/generator'
 require 'lastfm-itunes/itunes'

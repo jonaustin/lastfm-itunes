@@ -1,3 +1,5 @@
+require 'ruby-progressbar'
+
 module LastfmItunes
   class Generator
     attr_reader :m3u, :m3u_path
@@ -7,6 +9,7 @@ module LastfmItunes
       @lastfm = Lastfm.new(lastfm_credentials)
       @m3u_path = options.fetch(:m3u_path) { default_m3u_path }
       @limit = options.fetch(:limit) { nil }
+      @show_progressbar = options.fetch(:show_progressbar) { false }
       @m3u = ::M3Uzi.new
     end
 
@@ -25,7 +28,9 @@ module LastfmItunes
 
     def fetch_top_tracks
       top_tracks = []
+      progressbar = progressbar(itunes_artist_tracks.keys.size) if @show_progressbar
       itunes_artist_tracks.each do |artist, tracks|
+        progressbar.increment if @show_progressbar
         top_tracks += lf_itunes_top_artist_tracks(artist, tracks)
       end
       top_tracks
@@ -43,5 +48,13 @@ module LastfmItunes
     def default_m3u_path
       Pathname(@itunes_xml_path).dirname.join('Lastfm Top Tracks.m3u').to_s
     end
+
+    def progressbar(total)
+      ProgressBar.create(
+        starting_at: 0,
+        total: total,
+        format: "%a".color(:cyan) + "|".color(:magenta) + "%B".color(:green) + "|".color(:magenta) +  "%p%%".color(:cyan))
+    end
+
   end
 end
