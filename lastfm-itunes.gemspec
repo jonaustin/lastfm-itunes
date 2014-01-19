@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = LastfmItunes::VERSION
   spec.authors       = ['Jon Austin']
   spec.email         = ['jon.i.austin@gmail.com']
-  spec.summary       = %q{CLI tool to create m3u playlists of top artist tracks from your iTunes library}
-  spec.description   = spec.summary
+  spec.summary       = %q{CLI tool to easily create m3u playlists of top Lastfm tracks from an iTunes library}
+  spec.description   = %q{Easily create playlists of top Lastfm tracks from your iTunes library.}
   spec.homepage      = 'https://github.com/jonaustin/lastfm-itunes'
   spec.license       = 'MIT'
 
