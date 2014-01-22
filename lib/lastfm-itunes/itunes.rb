@@ -18,7 +18,7 @@ module LastfmItunes
     end
 
     def artists
-      @tracks.map(&:artist)
+      @tracks.map(&:artist).uniq
     end
   end
 

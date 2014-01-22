@@ -8,8 +8,10 @@ module LastfmItunes::Lastfm
       @limit = args.fetch(:limit, 500)
     end
 
-    def my_top_tracks(other_tracks)
-      intersection_of_tracks(top_tracks, other_tracks)
+    def my_top_tracks(other_tracks, &block)
+      tracks = top_tracks
+      yield tracks.size if block_given?
+      intersection_of_tracks(tracks, other_tracks)
     end
 
     def top_tracks

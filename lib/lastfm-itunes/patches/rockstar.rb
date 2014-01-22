@@ -1,5 +1,5 @@
 module Rockstar
-  # Lastfm supports a limit, but rockstar currently does not
+  # Lastfm supports a limit, but rockstar currently does not.
   # This simply adds the limit parameter
   class User < Base
     def top_tracks(force=false, limit = 50)

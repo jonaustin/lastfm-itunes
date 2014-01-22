@@ -6,8 +6,8 @@ module LastfmItunes
     attr_reader :m3u
 
     def initialize(m3u_path)
-      @m3u              = ::M3Uzi.new
-      @m3u.path         = m3u_path
+      @m3u      = ::M3Uzi.new
+      @m3u.path = File.expand_path(m3u_path)
     end
 
     def generate(tracks, &block)

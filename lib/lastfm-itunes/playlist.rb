@@ -1,6 +1,6 @@
 module LastfmItunes
   class Playlist
-    attr_reader :tracks, :itunes
+    attr_reader :tracks, :itunes, :search
     attr_accessor :limit
 
     def initialize(args)

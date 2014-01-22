@@ -12,11 +12,11 @@ module LastfmItunes::Lastfm
       @limit = args.fetch(:limit, 50) # default number returned by lastfm
     end
 
-    def my_top_tracks(other_tracks)
+    def my_top_tracks(other_tracks, &block)
       found_tracks = []
       group_tracks_by_artist(other_tracks).each do |artist, tracks|
         next unless artist
-        yield if block_given?
+        yield tracks.size if block_given?
         @artist = Rockstar::Artist.new(artist)
         found_tracks.concat intersection_of_tracks(top_tracks, tracks)
       end
