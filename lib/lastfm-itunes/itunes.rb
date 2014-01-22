@@ -2,22 +2,23 @@ require 'itunes/library'
 
 module LastfmItunes
   class Itunes
-    attr_reader :library, :artist_tracks
+    include Tracks
+    attr_accessor :library, :tracks, :xml_path
 
     def initialize(xml_path)
-      @library = ::ITunes::Library.load(xml_path)
+      @xml_path = File.expand_path(xml_path)
+      @library = ::ITunes::Library.load(@xml_path)
       raise InvalidLibraryException unless library.track_ids
-      @artist_tracks = group_tracks_by_artist
+      @tracks = @library.music.tracks.select { |t| t.location_path }
     end
 
-
-    private
-
+    alias :old_group_tracks_by_artist :group_tracks_by_artist
     def group_tracks_by_artist
-      @library.music.tracks.each_with_object({}) do |track, hash|
-        hash[track.artist] ||= []
-        hash[track.artist] << track
-      end
+      old_group_tracks_by_artist(@tracks)
+    end
+
+    def artists
+      @tracks.map(&:artist)
     end
   end
 

@@ -29,6 +29,10 @@ def itunes_xml_path
   Pathname.new(__FILE__).join('..', 'fixtures', 'iTunes Music Library.xml')
 end
 
+def itunes_remote_xml_path
+  Pathname.new(__FILE__).join('..', 'fixtures', 'iTunes Music Library Remote.xml')
+end
+
 def lastfm_credentials
   # If you regenerate the VCR fixtures you need to add your credentials to ENV!
   # http://www.last.fm/api/account/

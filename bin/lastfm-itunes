@@ -1,6 +1,14 @@
 #!/usr/bin/env ruby
 require 'yaml'
 require 'highline/import'
+require 'ruby-progressbar'
+
+def progressbar(total)
+  ProgressBar.create(
+    starting_at: 0,
+    total: total,
+    format: "%a".color(:cyan) + "|".color(:magenta) + "%B".color(:green) + "|".color(:magenta) +  "%p%%".color(:cyan))
+end
 
 lastfm_yml_path = File.expand_path("~/.config/lastfm-itunes.yml")
 if File.exists?(lastfm_yml_path)
@@ -18,7 +26,7 @@ puts
 itunes_xml_path = ask("Where is your iTunes Library XML file?  ") do |q|
   q.default = File.expand_path("~/Music/iTunes/iTunes Music Library.xml")
 end
-playlist_path = ask("Where to store generated playlist?  ") do |q|
+m3u_path = ask("Where to store generated playlist?  ") do |q|
   q.default = Pathname(itunes_xml_path).dirname.join('Lastfm Top Tracks.m3u').to_s
 end
 
@@ -36,9 +44,15 @@ limit = ask("\nNumber of tracks to fetch per artist?  ") do |q|
 end
 limit = limit.to_i > 0 ? limit.to_i : nil
 
-options = { m3u_path: playlist_path, show_progressbar: true, limit: limit}
-generator = LastfmItunes::Generator.new(itunes_xml_path, @lastfm_credentials, options)
+args = { itunes_xml_path: itunes_xml_path,
+            lastfm_credentials: @lastfm_credentials,
+            limit: limit }
 
 puts "\nGenerating.....".color(:green)
-generator.generate_m3u
-puts "\nHurrah! Your playlist has been generated at: ".color(:green) + "#{playlist_path}".color(:yellow)
+#progressbar = progressbar(generator.send(:itunes_artist_tracks).keys.size)
+#generator.generate_m3u { progressbar.increment }
+generator = LastfmItunes::Generator.new(m3u_path)
+playlist = LastfmItunes::Playlist.new(args)
+playlist.fetch_tracks
+generator.generate(playlist.track_paths)
+puts "\nHurrah! Your playlist has been generated at: ".color(:green) + "#{m3u_path}".color(:yellow)

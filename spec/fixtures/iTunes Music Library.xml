@@ -12,6 +12,36 @@
 	<key>Library Persistent ID</key><string>7F91FA785BCCB335</string>
 	<key>Tracks</key>
 	<dict>
+		<key>3380</key>
+		<dict>
+			<key>Track ID</key><integer>3380</integer>
+			<key>Name</key><string>Dirty Reggae</string>
+			<key>Artist</key><string>The Aggrolites</string>
+			<key>Album Artist</key><string>Various Artists</string>
+			<key>Album</key><string>Give 'Em the Boot IV</string>
+			<key>Genre</key><string>Alternative</string>
+			<key>Kind</key><string>Purchased AAC audio file</string>
+			<key>Size</key><integer>2768127</integer>
+			<key>Total Time</key><integer>194187</integer>
+			<key>Disc Number</key><integer>1</integer>
+			<key>Disc Count</key><integer>1</integer>
+			<key>Track Number</key><integer>2</integer>
+			<key>Track Count</key><integer>26</integer>
+			<key>Year</key><integer>2004</integer>
+			<key>Date Modified</key><date>2008-08-05T04:48:21Z</date>
+			<key>Date Added</key><date>2008-08-05T04:48:21Z</date>
+			<key>Bit Rate</key><integer>128</integer>
+			<key>Sample Rate</key><integer>44100</integer>
+			<key>Release Date</key><date>2004-11-09T08:00:00Z</date>
+			<key>Compilation</key><true/>
+			<key>Artwork Count</key><integer>1</integer>
+			<key>Sort Album</key><string>Give 'Em the Boot IV</string>
+			<key>Sort Artist</key><string>Aggrolites</string>
+			<key>Sort Name</key><string>Dirty Reggae</string>
+			<key>Persistent ID</key><string>B940753944C35911</string>
+			<key>Track Type</key><string>Remote</string>
+			<key>Purchased</key><true/>
+		</dict>
 		<key>246</key>
 		<dict>
 			<key>Track ID</key><integer>246</integer>
