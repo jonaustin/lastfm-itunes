@@ -1,6 +1,4 @@
 [![Code Climate](https://codeclimate.com/github/jonaustin/lastfm-itunes.png)](https://codeclimate.com/github/jonaustin/lastfm-itunes)
-[![Build Status](https://travis-ci.org/jonaustin/lastfm-itunes.png?branch=master)](https://travis-ci.org/jonaustin/lastfm-itunes)
-[![Coverage Status](https://coveralls.io/repos/jonaustin/lastfm-itunes/badge.png)](https://coveralls.io/r/jonaustin/lastfm-itunes)
 
 # Lastfm iTunes Playlist Creator
 
@@ -29,16 +27,24 @@ Follow the prompts to generate a playlist:
     What is your Lastfm API Key?
     What is your Lastfm API Secret?
 
-    Number of tracks to fetch per artist?  |all|
+    1) Artist
+    2) User
+    Search Artist global top tracks or User top tracks?  2
+    Username?  echowarpt
+    Maximum number of tracks to fetch?  |all| 500
 
-    Generating.....
-    Time: 00:01:00|==================================================================|100%
+    Extracting from iTunes....
+      Found 64 artists and 1543 tracks
+    Retrieving from Last.fm...
+      Found 309 iTunes tracks out of 500 Last.fm tracks
 
-    Hurrah! Your playlist has been generated at: /Users/jon/Music/iTunes/Lastfm Top Tracks.m3u
+    Generating Playlist.....
+
+    Success! Your playlist has been generated at: /Users/jon/Music/iTunes/Lastfm Top Tracks.m3u
 
 ## Notes: 
 
-* Each artist in the library requires a separate API call to Lastfm to get the top tracks. As a result generation could take quite a while if there are many artists to fetch.
+* Each artist in the library requires a separate API call to Lastfm to get the top tracks. As a result generation could several minutes or more if there are hundreds or thousands of artists to fetch.
 
 * It does not support tracks stored in the cloud. Haven't looked into whether this
 is possible or not. Feel free to send a pull request.
