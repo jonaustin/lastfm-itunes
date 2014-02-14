@@ -92,7 +92,7 @@ module LastfmItunes
 
     def progressbar(total)
       ProgressBar.create(
-        starting_at: 0,
+        starting_at: 1,
         total: total,
         format: "%a".color(:cyan) + "|".color(:magenta) + "%B".color(:green) + "|".color(:magenta) +  "%p%%".color(:cyan))
     end
