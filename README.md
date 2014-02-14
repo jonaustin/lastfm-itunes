@@ -6,41 +6,21 @@ Easily create playlists of top Lastfm tracks from your iTunes library.
 
 http://jonaustin.io/posts/lastfm-itunes
 
-## Installation
+### Installation:
 
-    gem install lastfm-itunes
+`$ gem install lastfm-itunes`
 
-## Usage
+#### Follow the prompts to generate a playlist:
 
-    lastfm-itunes
+ `$ lastfm-itunes`
 
-Follow the prompts to generate a playlist:
+#### Creating a playlist from Artist top tracks:
 
+![Creating a playlist from Artist top tracks](doc/artist_tracks.png)
 
-    Lastfm iTunes Playlist Creator
-    ==============================
+#### Creating a playlist from User top tracks:
 
-    Where is your iTunes Library XML file?  |~/Music/iTunes/iTunes Music Library.xml|
-    Where to store generated playlist?  |~/Music/iTunes/Lastfm Top Tracks.m3u|
-
-    Find or create Lastfm API secret and key here: http://www.last.fm/api/accounts
-    What is your Lastfm API Key?
-    What is your Lastfm API Secret?
-
-    1) Artist
-    2) User
-    Search Artist global top tracks or User top tracks?  2
-    Username?  echowarpt
-    Maximum number of tracks to fetch?  |all| 500
-
-    Extracting from iTunes....
-      Found 64 artists and 1543 tracks
-    Retrieving from Last.fm...
-      Found 309 iTunes tracks out of 500 Last.fm tracks
-
-    Generating Playlist.....
-
-    Success! Your playlist has been generated at: /Users/jon/Music/iTunes/Lastfm Top Tracks.m3u
+![Creating a playlist from User top tracks](doc/user_tracks.png)
 
 ## Notes: 
 
