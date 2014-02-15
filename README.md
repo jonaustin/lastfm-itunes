@@ -32,8 +32,9 @@ is possible or not. Feel free to send a pull request.
 * For convenience, lastfm credentials may be stored in ~/.config/lastfm-itunes.yml
 If that file exists, then it will auto-fill the Lastfm API key and secret.
 
-      api_key: ""
-      api_secret: ""
+
+    api_key: ""  
+    api_secret: ""
 
 ## Contributing
 
