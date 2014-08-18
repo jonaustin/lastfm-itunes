@@ -4,7 +4,7 @@
 
 Easily create playlists of top Lastfm tracks from your iTunes library.
 
-http://jonaustin.io/posts/lastfm-itunes
+http://jonaustin.io/blog/2014/01/17/lastfm-itunes/
 
 ### Installation:
 
