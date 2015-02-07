@@ -9,14 +9,14 @@ require 'lastfm-itunes'
 require 'vcr'
 
 VCR.configure do |c|
+  c.hook_into                  :webmock
   c.cassette_library_dir     = 'spec/fixtures/vcr'
-  c.hook_into                :webmock
   c.ignore_localhost         = true
-  c.default_cassette_options = { :record => :new_episodes }
-  c.filter_sensitive_data('API_KEY') { ENV['LASTFM_API_KEY'] }
+  c.filter_sensitive_data('API_KEY')    { ENV['LASTFM_API_KEY'] }
   c.filter_sensitive_data('API_SECRET') { ENV['LASTFM_API_SECRET'] }
   c.default_cassette_options = {
-    :match_requests_on => [:method,
+    record: :new_episodes,
+    match_requests_on: [:method,
       VCR.request_matchers.uri_without_param(:api_key)]
   }
 end
@@ -39,9 +39,18 @@ def lastfm_credentials
   # e.g.:
   # export LASTFM_API_KEY='my_api_key'
   # export LASTFM_API_SECRET='my_api_secret'
+  key =    ENV['LASTFM_API_KEY']
+  secret = ENV['LASTFM_API_SECRET']
+
+  if key.nil? || secret.nil?
+    raise LastfmItunes::InvalidConfigException, \
+      'LASTFM_KEY and LASTFM_SECRET environment variables must be set'
+  end
+
   {
-    api_key: ENV['LASTFM_API_KEY'],
-    api_secret: ENV['LASTFM_API_SECRET']
+    api_key:    key,
+    api_secret: secret
   }
 end
 
+class LastfmItunes::InvalidConfigException < Exception; end
