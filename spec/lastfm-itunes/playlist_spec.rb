@@ -14,7 +14,7 @@ describe LastfmItunes::Playlist do
     it 'should find all if no limit given' do
       VCR.use_cassette('lastfm top tracks for all itunes artists') do
         playlist.fetch_tracks
-        playlist.tracks.size.should == 82
+        playlist.tracks.size.should == 81
       end
     end
 
